@@ -1,6 +1,7 @@
 from agents import function_tool
+from datetime import date
 
 @function_tool
-def fun_fact() -> str:
-    """Return a dummy fun fact"""
-    return "just a random dummy text"
+def latest_date() -> date:
+    """Return today's date. Use this tool whenever user's query asks for anything latest."""
+    return date.today()
