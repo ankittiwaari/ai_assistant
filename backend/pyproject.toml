@@ -8,8 +8,12 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
+    "asyncpg>=0.31.0",
     "dotenv>=0.9.9",
-    "openai-agents>=0.21.1",
+    "gradio>=6.26.0",
+    "openai-agents[sqlalchemy]>=0.21.1",
+    "pygame>=2.6.1",
+    "sarvamai>=0.1.31",
     "tavily>=1.1.0",
 ]
 
@@ -19,3 +23,8 @@ personal-assistant = "personal_assistant:main"
 [build-system]
 requires = ["uv_build>=0.12.5,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.5",
+]

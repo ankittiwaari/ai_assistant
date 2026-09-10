@@ -1,5 +1,7 @@
-from agents import function_tool
 from datetime import date
+
+from agents import function_tool
+
 
 @function_tool
 def latest_date() -> date:
