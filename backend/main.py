@@ -1,9 +1,8 @@
 import asyncio
 from dataclasses import dataclass
-from datetime import date
+from datetime import datetime, timezone
 
 from agents import Agent, OpenAIChatCompletionsModel, Runner, set_tracing_disabled
-
 from infra.client import get_client
 from infra.db import dispose_engine, get_session
 from subagents.summariser_agent import summariser
@@ -12,7 +11,7 @@ from tools.web_search_tool import web_search
 
 set_tracing_disabled(True)
 
-instructions: str = f"""Route each task to the right specialist. Whenever the invocation involves anything around latest, use the current date as {date.today()}."""
+instructions: str = f"""Route each task to the right specialist. Whenever the invocation involves anything around latest, use the current date as {datetime.now(tz=timezone.utc).date()}."""
 
 agent = Agent(
     name="Main agent",
@@ -30,7 +29,6 @@ class UserInfo:
 
 
 async def init_chat(query: str, history, session_id: str = "user-123") -> str:
-    print(history)
     result = await Runner.run(
         agent,
         query,
