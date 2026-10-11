@@ -1,0 +1,40 @@
+[project]
+name = "personal-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Ankit Tiwari", email = "ankittiwaari@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "asyncpg>=0.31.0",
+    "docker>=7.2.0",
+    "dotenv>=0.9.9",
+    "gradio>=6.26.0",
+    "numpy>=2.5.3",
+    "openai-agents[docker,sqlalchemy]>=0.21.1",
+    "pdf2image>=1.17.0",
+    "pgvector>=0.5.0",
+    "psycopg[binary]>=3.3.6",
+    "pygame>=2.6.1",
+    "pymupdf4llm>=1.28.2",
+    "pytesseract>=0.3.13",
+    "sarvamai>=0.1.31",
+    "tavily>=1.1.0",
+]
+
+[project.scripts]
+personal-assistant = "app.main:run"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "app"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.5",
+]

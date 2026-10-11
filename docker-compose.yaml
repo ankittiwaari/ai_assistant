@@ -1,0 +1,12 @@
+services:
+  db:
+    image: dhi.io/pgvector:pg18
+    environment:
+      POSTGRES_PASSWORD: passwd
+    volumes:
+      - pgvector-data:/var/lib/postgresql
+    ports:
+      - "5431:5432"
+
+volumes:
+  pgvector-data:
