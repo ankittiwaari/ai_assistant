@@ -6,12 +6,13 @@ from os import getenv
 from agents import Agent, OpenAIChatCompletionsModel, Runner, set_tracing_disabled
 from dotenv import load_dotenv
 
+from app.infra.client import get_client
+from app.infra.db import dispose_engine, get_session
+from app.infra.logging_config import setup_logging
 from app.rag_agent.retrieval.retrieve_context import search_documents
-from src.app.infra.client import get_client
-from src.app.infra.db import dispose_engine, get_session
-from src.app.tools.random_tool import latest_date
-from src.app.tools.web_search_tool import web_search
-from src.scratch.subagents.summariser_agent import summariser
+from app.tools.random_tool import latest_date, logger_function
+from app.tools.web_search_tool import web_search
+from scratch.subagents.summariser_agent import summariser
 
 load_dotenv()
 
@@ -22,15 +23,16 @@ instructions: str = f"""Route each task to the right specialist. Whenever the in
 
 agent = Agent(
     name="Main agent",
-    instructions=(
+    instructions=instructions
+    + (
         " For questions about the documents, call search_documents and answer "
         "only from the returned passages, citing page numbers. If the passages "
         "don't contain the answer, say you don't know."
     ),
-    tools=[web_search, latest_date, search_documents],
+    tools=[web_search, latest_date, search_documents, logger_function],
     handoffs=[summariser],
     model=OpenAIChatCompletionsModel(
-        model=getenv("OPEN_ROUTER_MODEL", "google/gemma-4-26b-a4b-it:free"),
+        model=getenv("OPEN_ROUTER_MODEL_PAID", "google/gemma-4-26b-a4b-it:free"),
         openai_client=get_client(),
     ),
 )
@@ -53,6 +55,7 @@ async def init_chat(query: str, history, session_id: str = "user-123") -> str:
 
 
 async def run():
+    setup_logging()
     try:
         response = await init_chat(input("Enter your query:\n"), [])
         print(response)

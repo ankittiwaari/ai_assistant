@@ -4,7 +4,7 @@ from os import getenv
 from agents import Agent, OpenAIChatCompletionsModel, Runner, function_tool
 from dotenv import load_dotenv
 
-from src.app.infra.client import get_client
+from app.infra.client import get_client
 
 load_dotenv()
 

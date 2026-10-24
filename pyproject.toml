@@ -10,8 +10,11 @@ requires-python = ">=3.13"
 dependencies = [
     "asyncpg>=0.31.0",
     "docker>=7.2.0",
+    "docling>=2.140.0",
+    "docling-core[chunking]>=2.102.0",
     "dotenv>=0.9.9",
     "gradio>=6.26.0",
+    "httpx>=0.28.1",
     "numpy>=2.5.3",
     "openai-agents[docker,sqlalchemy]>=0.21.1",
     "pdf2image>=1.17.0",
@@ -22,6 +25,7 @@ dependencies = [
     "pytesseract>=0.3.13",
     "sarvamai>=0.1.31",
     "tavily>=1.1.0",
+    "transformers>=5.20.1",
 ]
 
 [project.scripts]

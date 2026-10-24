@@ -1,6 +1,7 @@
-from openai import AsyncOpenAI
-from dotenv import load_dotenv
 from os import getenv
+
+from dotenv import load_dotenv
+from openai import AsyncOpenAI
 
 load_dotenv()
 

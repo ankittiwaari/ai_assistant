@@ -5,6 +5,7 @@ from agents import function_tool
 from pgvector import Vector
 from pgvector.psycopg import register_vector_async
 
+from app.infra.client import get_client
 from app.infra.config import (
     DB_NAME,
     DB_PASSWORD,
@@ -13,7 +14,6 @@ from app.infra.config import (
     EMBEDDING_MODEL,
     MODEL_NAME,
 )
-from src.app.infra.client import get_client
 
 client = get_client()
 

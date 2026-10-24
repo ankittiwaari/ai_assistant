@@ -10,8 +10,8 @@ from agents.sandbox.entries import File
 from agents.sandbox.sandboxes import DockerSandboxClient, DockerSandboxClientOptions
 from dotenv import load_dotenv
 
-from src.app.infra.client import get_client
-from src.app.infra.db import dispose_engine
+from app.infra.client import get_client
+from app.infra.db import dispose_engine
 
 load_dotenv()
 

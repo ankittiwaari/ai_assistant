@@ -15,7 +15,7 @@ from agents import (
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
-from src.app.infra.client import get_client
+from app.infra.client import get_client
 
 load_dotenv()
 

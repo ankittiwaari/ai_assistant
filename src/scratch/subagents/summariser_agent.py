@@ -1,6 +1,6 @@
 from agents import Agent, OpenAIChatCompletionsModel
 
-from src.app.infra.client import get_client
+from app.infra.client import get_client
 
 summariser = Agent(
     name="Summariser agent",

@@ -1,9 +1,12 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
+from app.infra.logging_config import setup_logging
+
 from .main import init_chat
 
 app = FastAPI()
+setup_logging()
 
 
 class RequestBody(BaseModel):
