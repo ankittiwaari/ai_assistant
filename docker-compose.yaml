@@ -7,6 +7,13 @@ services:
       - pgvector-data:/var/lib/postgresql
     ports:
       - "5431:5432"
+  qdrant:
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant-data:/qdrant/storage
 
 volumes:
   pgvector-data:
+  qdrant-data:
